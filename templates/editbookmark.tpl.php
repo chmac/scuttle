@@ -6,13 +6,13 @@ $accessShared = '';
 $accessPrivate = '';
 switch ($row['bStatus']) {
     case 0 :
-        $accessPublic = ' selected="selected"';
+        $accessPublic = ' checked';
         break;
     case 1 :
-        $accessShared = ' selected="selected"';
+        $accessShared = ' checked';
         break;
     case 2 :
-        $accessPrivate = ' selected="selected"';
+        $accessPrivate = ' checked';
         break;
 }
 ?>
@@ -42,12 +42,7 @@ switch ($row['bStatus']) {
 <tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
     <td>
-        <a href="#" onclick="document.forms[0].status.value=2;return false">private</a>
-        <select name="status">
-            <option value="0"<?php echo $accessPublic ?>><?php echo T_('Public'); ?></option>
-            <option value="1"<?php echo $accessShared ?>><?php echo T_('Shared with Watch List'); ?></option>
-            <option value="2"<?php echo $accessPrivate ?>><?php echo T_('Private'); ?></option>
-        </select>
+        <input type="checkbox" name="status" value="2" <?php echo $accessPrivate ?> /> <?php echo T_('Private'); ?>
     </td>
     <td></td>
 </tr>
