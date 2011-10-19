@@ -42,6 +42,7 @@ switch ($row['bStatus']) {
 <tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
     <td>
+        <a href="#" onclick="document.forms[0].status.value=2;return false">private</a>
         <select name="status">
             <option value="0"<?php echo $accessPublic ?>><?php echo T_('Public'); ?></option>
             <option value="1"<?php echo $accessShared ?>><?php echo T_('Shared with Watch List'); ?></option>
