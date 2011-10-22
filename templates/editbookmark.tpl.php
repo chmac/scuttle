@@ -42,7 +42,7 @@ switch ($row['bStatus']) {
 <tr>
     <th align="left"><?php echo T_('Privacy'); ?></th>
     <td>
-        <input type="checkbox" name="status" value="2" <?php echo $accessPrivate ?> /> <?php echo T_('Private'); ?>
+        <input id="private" type="checkbox" name="status" title="<?php echo T_('Private'); ?>" value="2" <?php echo $accessPrivate ?> /> <label for="private" title="<?php echo T_('Private'); ?>"> <?php echo T_('Private'); ?> </label>
     </td>
     <td></td>
 </tr>
