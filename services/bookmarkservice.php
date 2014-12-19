@@ -209,6 +209,11 @@ class BookmarkService {
       return true;
   }
 
+  function _startsWith($haystack, $needle) {
+    // search backwards starting from haystack length characters from the end
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+  }
+
   function & getBookmarks($start = 0, $perpage = NULL, $user = NULL, $tags = NULL, $terms = NULL, $sortOrder = NULL, $watched = NULL, $startdate = NULL, $enddate = NULL, $hash = NULL) {
       // Only get the bookmarks that are visible to the current user.  Our rules:
       //  - if the $user is NULL, that means get bookmarks from ALL users, so we need to make
@@ -296,7 +301,11 @@ class BookmarkService {
       $query_4 = '';
       for ($i = 0; $i < $tagcount; $i ++) {
           $query_2 .= ', '. $GLOBALS['tableprefix'] .'tags AS T'. $i;
-          $query_4 .= ' AND T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'" AND T'. $i .'.bId = B.bId';
+          if (!$this->_startsWith($tags[$i],"-")) {
+              $query_4 .= ' AND T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'" AND T'. $i .'.bId = B.bId';
+          } else {
+              $query_4 .= ' AND B.bId NOT IN (SELECT bId FROM '. $GLOBALS['tableprefix'] .'tags WHERE tag = "'. $this->db->sql_escape(substr($tags[$i],1)) .'")';
+          }
       }
 
       // Search terms
