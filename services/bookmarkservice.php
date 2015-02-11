@@ -300,8 +300,8 @@ class BookmarkService {
       // Handle the parts of the query that depend on any tags that are present.
       $query_4 = '';
       for ($i = 0; $i < $tagcount; $i ++) {
-          $query_2 .= ', '. $GLOBALS['tableprefix'] .'tags AS T'. $i;
           if (!$this->_startsWith($tags[$i],"-")) {
+              $query_2 .= ', '. $GLOBALS['tableprefix'] .'tags AS T'. $i;
               $query_4 .= ' AND T'. $i .'.tag = "'. $this->db->sql_escape($tags[$i]) .'" AND T'. $i .'.bId = B.bId';
           } else {
               $query_4 .= ' AND B.bId NOT IN (SELECT bId FROM '. $GLOBALS['tableprefix'] .'tags WHERE tag = "'. $this->db->sql_escape(substr($tags[$i],1)) .'")';
