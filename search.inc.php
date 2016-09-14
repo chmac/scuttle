@@ -13,6 +13,7 @@
         <td><?php echo T_('Search' /* Search ... for */); ?></td>
         <td>
             <select name="range">
+                <option value="all"<?php echo $select_all; ?>><?php echo T_('all bookmarks'); ?></option>
                 <?php if (!in_array($range, array($currentUsername, 'all', 'watchlist')) && $user != $currentUsername): ?>
                 <option value="<?php echo $user ?>"<?php echo $selectUser; ?>><?php echo T_("this user's bookmarks"); ?></option>
                 <?php
@@ -24,7 +25,6 @@
                 <?php
                 }
                 ?>
-                <option value="all"<?php echo $select_all; ?>><?php echo T_('all bookmarks'); ?></option>
             </select>
         </td>
         <td><?php echo T_('for' /* Search ... for */); ?></td>
