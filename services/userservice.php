@@ -129,9 +129,6 @@ class UserService {
     }
 
     function getCurrentUserId() {
-
-	return 1;
-
         if (isset($_SESSION[$this->getSessionKey()])) {
             return $_SESSION[$this->getSessionKey()];
         } else if (isset($_COOKIE[$this->getCookieKey()])) {
