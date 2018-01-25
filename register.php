@@ -18,6 +18,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 ***************************************************************************/
 
+// Disable registration
+exit();
+
 require_once 'header.inc.php';
 $userservice     =& ServiceFactory::getServiceInstance('UserService');
 $templateservice =& ServiceFactory::getServiceInstance('TemplateService');
